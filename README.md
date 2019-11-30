@@ -25,7 +25,7 @@ Flix is an app that allows users to browse movies from the [The Movie Database A
 
 ## App Walkthrough on live iPhone XR
 
-<img src="https://imgur.com/lly2yTB.gif" width=250><br>
++<img src="/flixster_real_iphone_xr-min.gif?raw=true" width="250px">
 
 ### Notes
 Describe any challenges encountered while building the app.
