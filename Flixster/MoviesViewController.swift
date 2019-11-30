@@ -35,16 +35,12 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                 self.movies = dataDictionary["results"] as! [[String:Any]]
                 
                 self.tableView.reloadData()
-
-              // TODO: Get the array of movies
-              // TODO: Store the movies in a property to use elsewhere
-              // TODO: Reload your table view data
-
            }
         }
         task.resume()
     }
     
+    // Returns the number of movies contained in API
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movies.count
     }
