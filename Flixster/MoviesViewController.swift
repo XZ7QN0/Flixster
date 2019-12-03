@@ -21,23 +21,16 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.dataSource = self
         tableView.delegate = self
 
-        // Do any additional setup after loading the view.
-        let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed")!
-        let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
-        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
-        let task = session.dataTask(with: request) { (data, response, error) in
-           // This will run when the network request returns
-            if let error = error {
-                print(error.localizedDescription)
-           } else if let data = data {
-                let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-                
-                self.movies = dataDictionary["results"] as! [[String:Any]]
-                
+        getMovies(url: "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed")
+    }
+    
+    func getMovies(url: String) {
+        UrlHelper.fetchApiUrl(apiUrl: url) { (movies) in
+            if let movies = movies {
+                self.movies = movies
                 self.tableView.reloadData()
-           }
+            }
         }
-        task.resume()
     }
     
     // Returns the number of movies contained in API
@@ -55,13 +48,24 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         cell.titleLabel.text = title
         cell.synopsisLabel.text = synopsis
         
-        let baseUrl = "https://image.tmdb.org/t/p/w185"
-        let posterPath = movie["poster_path"] as! String
-        let posterUrl = URL(string: baseUrl + posterPath)!
-        
+        let posterUrl = UrlHelper.getImageURL(baseUrl: "https://image.tmdb.org/t/p/w185", imagePath: movie["poster_path"] as! String)
         cell.posterView.af_setImage(withURL: posterUrl)
         
         return cell
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Find selected movie
+        let cell = sender as! UITableViewCell
+        let indexPath = tableView.indexPath(for: cell)!
+        let movie = movies[indexPath.row]
+        
+        // Pass the selected movie to the details VC
+        let detailsViewController = segue.destination as! MovieDetailsViewController
+        detailsViewController.movie = movie
+        
+        // Deselects the row
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
