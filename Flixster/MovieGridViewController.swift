@@ -63,4 +63,19 @@ class MovieGridViewController: UIViewController, UICollectionViewDataSource, UIC
         
         return cell
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Find selected movie
+        let cell = sender as! UICollectionViewCell
+        let indexPath = collectionView.indexPath(for: cell)!
+        let movie = movies[indexPath.item]
+        
+        // Pass the selected movie to the Superhero Details VC
+        let detailsViewController = segue.destination as! SuperheroMovieDetailsViewController
+        detailsViewController.movie = movie
+        
+        // Deselects the row
+        collectionView.deselectItem(at: indexPath, animated: true)
+    }
 }

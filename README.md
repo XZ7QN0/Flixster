@@ -11,12 +11,15 @@ Flix is an app that allows users to browse movies from the [The Movie Database A
 - [x] (5pts) User can tap a tab bar button to view a grid layout of Movie Posters using a CollectionView.
 
 #### BONUS
-- [ ] (2pts) User can tap a poster in the collection view to see a detail screen of that movie.
+- [x] (2pts) User can tap a poster in the collection view to see a detail screen of that movie.
 - [ ] (2pts) In the detail view, when the user taps the poster, a new screen is presented modally where they can view the trailer.
 
 ### App Walkthough GIF
 
 <img src="https://imgur.com/OaFuqv3.gif" width=250><br>
+
+Walkthrough with Collection View Details View Controller
+<img src="https://imgur.com/mp8XP6t.gif" width=250><br>
 
 ### Notes
 A major challenge that I came across was during the Collection View Setup, where the images of each movie poster loaded in a tiny square (image below). I found a solution in [stack overflow](https://stackoverflow.com/questions/56840665/why-on-xcode-11-uicollectionviewcell-changes-size-as-soon-as-you-scroll-i-alre) that led me to set the "Estimate Size" parameter for the Collection View to "None".

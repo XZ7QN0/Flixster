@@ -1,15 +1,15 @@
 //
-//  MovieDetailsViewController.swift
+//  SuperheroMovieDetailsViewController.swift
 //  Flixster
 //
-//  Created by Jonathon Chenvert on 12/2/19.
+//  Created by Jonathon Chenvert on 12/6/19.
 //  Copyright © 2019 Jonathon Chenvert. All rights reserved.
 //
 
 import UIKit
 import AlamofireImage
 
-class MovieDetailsViewController: UIViewController {
+class SuperheroMovieDetailsViewController: UIViewController {
     
     var movie: [String:Any]!
     @IBOutlet weak var backdropView: UIImageView!
@@ -17,12 +17,11 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var synopsisLabel: UILabel!
     
-    // Sets poster, backdrop, title, and synopsis to View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         titleLabel.text = movie["title"] as? String
-        titleLabel.sizeToFit() // Resizes label to use most appropriate amount of space
+        titleLabel.sizeToFit()
         
         synopsisLabel.text = movie["overview"] as? String
         synopsisLabel.sizeToFit()

@@ -2,6 +2,10 @@
 #
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
+Flixster.xcodeproj/project.pbxproj
+flixster_week2*.gif
+flixster_real_iphone_xr.gif
+
 ## Build generated
 build/
 DerivedData
